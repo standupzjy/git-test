@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xincon.ecps.mapper.EbAreaMapper">
+  <resultMap id="BaseResultMap" type="com.xincon.ecps.model.EbArea">
+    <id column="EREA_ID" jdbcType="DECIMAL" property="ereaId" />
+    <result column="PARENT_ID" jdbcType="DECIMAL" property="parentId" />
+    <result column="EREA_NAME" jdbcType="VARCHAR" property="ereaName" />
+    <result column="AREA_LEVEL" jdbcType="DECIMAL" property="areaLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EREA_ID, PARENT_ID, EREA_NAME, AREA_LEVEL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EB_AREA
+    where EREA_ID = #{ereaId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from EB_AREA
+    where EREA_ID = #{ereaId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.xincon.ecps.model.EbArea">
+    insert into EB_AREA (EREA_ID, PARENT_ID, EREA_NAME, 
+      AREA_LEVEL)
+    values (#{ereaId,jdbcType=DECIMAL}, #{parentId,jdbcType=DECIMAL}, #{ereaName,jdbcType=VARCHAR}, 
+      #{areaLevel,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xincon.ecps.model.EbArea">
+    insert into EB_AREA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ereaId != null">
+        EREA_ID,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="ereaName != null">
+        EREA_NAME,
+      </if>
+      <if test="areaLevel != null">
+        AREA_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ereaId != null">
+        #{ereaId,jdbcType=DECIMAL},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="ereaName != null">
+        #{ereaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null">
+        #{areaLevel,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xincon.ecps.model.EbArea">
+    update EB_AREA
+    <set>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="ereaName != null">
+        EREA_NAME = #{ereaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null">
+        AREA_LEVEL = #{areaLevel,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EREA_ID = #{ereaId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xincon.ecps.model.EbArea">
+    update EB_AREA
+    set PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      EREA_NAME = #{ereaName,jdbcType=VARCHAR},
+      AREA_LEVEL = #{areaLevel,jdbcType=DECIMAL}
+    where EREA_ID = #{ereaId,jdbcType=DECIMAL}
+  </update>
+
+  <select id="selectProv" parameterType="long" resultMap="BaseResultMap">
+    select * from eb_area t WHERE t.parent_id = #{parentId}
+  </select>
+
+</mapper>

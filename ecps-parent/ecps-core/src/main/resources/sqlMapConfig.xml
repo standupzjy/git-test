@@ -1,0 +1,21 @@
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	
+	<mappers>
+		<mapper resource="com/xincon/ecps/mapper/EbBrandMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbItemMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbFeatureMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbItemClobMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbParaValueMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbSkuMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbSpecValueMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbConsoleLogMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/TsPtlUserMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbAreaMapper.xml"/>
+		<mapper resource="com/xincon/ecps/mapper/EbShipAddrMapper.xml"/>
+	</mappers>
+
+</configuration>
